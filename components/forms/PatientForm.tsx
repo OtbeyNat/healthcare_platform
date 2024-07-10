@@ -42,6 +42,9 @@ export const PatientForm = () => {
       if (newUser) {
         router.push(`/patients/${newUser.$id}/register`);
       }
+
+      // TODO: IF EXISTING USER REDIRECT TO NEW APPOINTMENT PAGE
+
     } catch (error) {
       console.log(error);
     }

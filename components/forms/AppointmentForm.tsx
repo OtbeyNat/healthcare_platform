@@ -98,12 +98,12 @@ export const AppointmentForm = ({
                 userid: userId,
                 appointmentId: appointment?.$id!,
                 appointment: {
-                primaryPhysician: values.primaryPhysician,
-                schedule: new Date(values.schedule),
-                status: status as Status,
-                cancellationReason: values.cancellationReason,
-              },
-              type,
+                  primaryPhysician: values.primaryPhysician,
+                  schedule: new Date(values.schedule),
+                  status: status as Status,
+                  cancellationReason: values.cancellationReason,
+                },
+                type,
             };
     
             const updatedAppointment = await updateAppointment(appointmentToUpdate);
