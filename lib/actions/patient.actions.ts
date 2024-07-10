@@ -99,6 +99,8 @@ export const getPatient = async (userId: string) => {
         [Query.equal("userid", [userId])]
       );
   
+      if (patients.total == 0) {return false;}
+
       return parseStringify(patients.documents[0]);
     } catch (error) {
       console.error(

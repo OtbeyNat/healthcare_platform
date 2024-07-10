@@ -88,6 +88,8 @@ export const PatientForm = () => {
           placeholder="(555) 123-4567"
         />
 
+        <p className="text-14-regular text-dark-600">Returning User? Enter with Previous Email Used</p>
+
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>

@@ -2,15 +2,19 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 import RegisterForm from "@/components/forms/RegisterForm";
-import { getUser } from "@/lib/actions/patient.actions";
+import { getPatient, getUser } from "@/lib/actions/patient.actions";
+
+import * as Sentry from '@sentry/nextjs'
 
 const Register = async ({ params: { userid } }: SearchParamProps) => {
-    // console.log(userid)
     const user = await getUser(userid);
-    // const patient = await getPatient(userId);
 
-    // if (patient) redirect(`/patients/${userId}/new-appointment`);
+    Sentry.metrics.set("user_view_register", user.name);
+
+    const patient = await getPatient(userid);
+    if (patient) redirect(`/patients/${userid}/new-appointment`);
     
+
     return (
         <div className="flex h-screen max-h-screen">
             <section className="remove-scrollbar container">
