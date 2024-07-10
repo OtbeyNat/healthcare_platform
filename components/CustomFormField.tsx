@@ -20,6 +20,11 @@ import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import Image from "next/image";
 
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+
+
+
 export enum FormFieldType {
     INPUT = "input",
     TEXTAREA = "textarea",
@@ -108,6 +113,26 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
                 </div>
                 </FormControl>
             );
+        case FormFieldType.DATE_PICKER:  
+            return (
+                <div className="flex rounded-md border border-dark-500 bg-dark-400">
+                    <Image
+                        src="/assets/icons/calendar.svg"
+                        height={24}
+                        width={24}
+                        alt="calendar"
+                        className="ml-2"
+                    />
+                    <FormControl>
+                        <DatePicker selected={field.value} onChange={(date) => field.onChange(date)} 
+                        dateFormat={props.dateFormat ?? 'MM/dd/yyyy'} 
+                        showTimeSelect={props.showTimeSelect ?? false}
+                        timeInputLabel="Time:"
+                        wrapperClassName="date-picker"   
+                        />
+                    </FormControl>
+                </div>
+            );
         case FormFieldType.SELECT:
             return (
                 <FormControl>
@@ -123,6 +148,9 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
                 </Select>
                 </FormControl>
             );
+        
+        case FormFieldType.SKELETON:
+            return props.renderSkeleton ? props.renderSkeleton(field) : null;
         default:
             break;
     }

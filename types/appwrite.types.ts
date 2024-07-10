@@ -31,6 +31,6 @@ export interface Appointment extends Models.Document {
   primaryPhysician: string;
   reason: string;
   note: string;
-  userId: string;
+  userid: string;
   cancellationReason: string | null;
 }
